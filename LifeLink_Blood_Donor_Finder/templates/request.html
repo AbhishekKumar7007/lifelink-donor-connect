@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Request Blood{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="eyebrow">SHARE A REQUEST</div><h1>Request blood support.</h1><p>Enter the basic details so your request can be recorded.</p></section>
+<section class="content-wrap narrow-wrap"><div class="form-card"><form method="POST" class="app-form">
+<label>Patient / contact person name *<input name="patient_name" required maxlength="80"></label>
+<div class="two-fields"><label>Blood group *<select name="blood_group" required><option value="">Select</option>{% for g in ['A+','A-','B+','B-','AB+','AB-','O+','O-'] %}<option>{{ g }}</option>{% endfor %}</select></label><label>Units required *<input name="units" type="number" min="1" max="10" value="1" required></label></div>
+<label>City *<input name="city" required placeholder="City"></label>
+<label>Hospital / blood bank<input name="hospital" maxlength="120" placeholder="Hospital name (optional)"></label>
+<label>Contact number *<input name="contact" type="tel" required maxlength="20"></label>
+<label>Urgency *<select name="urgency" required><option value="">Select urgency</option><option>Emergency</option><option>Within 24 hours</option><option>Planned</option></select></label>
+<label>Additional details<textarea name="details" rows="3" maxlength="500" placeholder="Optional details"></textarea></label>
+<button class="btn btn-primary full-btn" type="submit">Submit request →</button>
+</form></div><div class="safety-callout"><b>Medical emergency?</b><p>Do not wait for a website response. Contact the treating hospital, a licensed blood bank or local emergency services immediately. LifeLink does not arrange or guarantee blood supply.</p></div></section>
+{% endblock %}

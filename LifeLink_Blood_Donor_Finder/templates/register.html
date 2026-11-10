@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Become a Donor{% endblock %}
+{% block content %}
+<section class="form-page"><div class="form-intro"><div class="eyebrow">MAKE A DIFFERENCE</div><h1>Become a<br><em>lifesaver.</em></h1><p>Join the LifeLink community as a volunteer donor. Your details help people find potential donors in their area.</p><div class="form-note">♡ Your willingness to help can bring hope to someone.</div></div>
+<div class="form-card"><h2>Donor registration</h2><p class="form-subtitle">Fields marked * are required.</p>
+<form method="POST" class="app-form">
+<label>Full name *<input name="name" required maxlength="80" placeholder="Enter your name"></label>
+<div class="two-fields"><label>Blood group *<select name="blood_group" required><option value="">Select</option>{% for g in ['A+','A-','B+','B-','AB+','AB-','O+','O-'] %}<option>{{ g }}</option>{% endfor %}</select></label><label>City *<input name="city" required maxlength="80" placeholder="Your city"></label></div>
+<label>Phone number *<input name="phone" type="tel" required maxlength="20" placeholder="Enter contact number"></label>
+<label>Last blood donation date <input name="last_donation" type="date"></label>
+<label class="check-label"><input type="checkbox" required> I agree to share these details for this educational donor directory.</label>
+<button class="btn btn-primary full-btn" type="submit">Submit registration →</button>
+</form><p class="privacy-note">Prototype only: phone verification and privacy controls are not yet implemented.</p></div></section>
+{% endblock %}

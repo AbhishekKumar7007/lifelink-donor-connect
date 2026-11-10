@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Find Donors{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="eyebrow">COMMUNITY DIRECTORY</div><h1>Find a blood donor.</h1><p>Search volunteer profiles by blood group and city.</p></section>
+<section class="content-wrap">
+  <form class="filter-panel" method="GET">
+    <label>Blood group<select name="blood_group"><option value="">All blood groups</option>{% for g in ['A+','A-','B+','B-','AB+','AB-','O+','O-'] %}<option value="{{ g }}" {% if blood_group==g %}selected{% endif %}>{{ g }}</option>{% endfor %}</select></label>
+    <label>City<input name="city" value="{{ city }}" placeholder="e.g. Meerut"></label>
+    <button class="btn btn-primary" type="submit">Search donors →</button>
+    <a class="reset-link" href="{{ url_for('donors') }}">Reset</a>
+  </form>
+  <div class="results-head"><h2>{{ donors|length }} donor profile{% if donors|length != 1 %}s{% endif %} found</h2><span>Showing available profiles</span></div>
+  {% if donors %}
+  <div class="donor-grid">{% for donor in donors %}<article class="donor-card"><div class="donor-card-top"><span class="blood-badge large">{{ donor.blood_group }}</span><span class="available"><i></i> Available</span></div><h3>{{ donor.name }}</h3><p class="location">⌖ {{ donor.city }}</p><div class="donor-meta"><span>Last donation</span><b>{{ donor.last_donation or 'Not provided' }}</b></div><a class="btn btn-outline full-btn" href="tel:{{ donor.phone }}">Contact donor</a><small class="privacy-note">Contact details are shared only through LifeLink.</small></article>{% endfor %}</div>
+  {% else %}<div class="empty-state large-empty"><div class="empty-icon">⌕</div><h3>No matching donors yet</h3><p>Try another city or blood group, or invite a volunteer to register.</p><a class="btn btn-primary" href="{{ url_for('register') }}">Register a donor</a></div>{% endif %}
+</section>
+<div class="safety-strip">⚕ <span>Search results are user-submitted and not medically verified. Confirm donor eligibility and compatibility with a licensed blood bank or hospital.</span></div>
+{% endblock %}
